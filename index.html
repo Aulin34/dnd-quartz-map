@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Years Beyond</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+  
+  <style>
+    body {
+      width: 100%;
+      height: 850px;
+      border: 2px solid black;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+      background-color: black;
+    }
+
+    .leaflet-container {
+      background: #20252c;
+    }
+    
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+  <script>
+    // Initialize map using a simple CRS
+    const map = L.map("map", {
+      crs: L.CRS.Simple,
+      minZoom: -3,
+      maxZoom: 2,
+      zoomSnap: 0.25
+    });
+
+    // Image info
+    const imageUrl = "druecia_yearsbeyond_small.jpg"; // exact filename in repo
+    const imageWidth = 8192;   // your image width in px
+    const imageHeight = 5056;  // your image height in px
+
+    // Set image bounds
+    const bounds = [[0, 0], [imageHeight, imageWidth]];
+    L.imageOverlay(imageUrl, bounds).addTo(map);
+
+    // Fit map to image bounds
+    map.fitBounds(bounds);
+    
+  </script>
+</body>
+</html>
